@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-
+const BASE_URL = "https://mern-todo-21-api.vercel.app";
 export const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
@@ -19,7 +19,7 @@ export const TodoProvider = ({ children }) => {
           return;
         }
 
-        const response = await axios.get('/api/todos', {
+        const response = await axios.get('${BASE_URL}/api/todos', {
           headers: {
             Authorization: `Bearer ${token}`, // Attach token for authorization
           },
@@ -42,7 +42,7 @@ export const TodoProvider = ({ children }) => {
       }
 
       const response = await axios.post(
-        '/api/todos',
+        '${BASE_URL}/api/todos',
         newTodo,
         {
           headers: {
@@ -52,7 +52,7 @@ export const TodoProvider = ({ children }) => {
       );
       setTodos((prevTodos) => [...prevTodos, response.data.newTodo]);
       // Optionally, re-fetch all todos from the backend after creation
-      const result = await axios.get('/api/todos', {
+      const result = await axios.get('${BASE_URL}/api/todos', {
         headers: {
           Authorization: `Bearer ${token}`, // Ensure token is sent with re-fetch
         },
@@ -73,7 +73,7 @@ export const TodoProvider = ({ children }) => {
       }
 
       const response = await axios.put(
-        `/api/todos/${updatedTodo._id}`,
+        `${BASE_URL}/api/todos/${updatedTodo._id}`,
         updatedTodo,
         {
           headers: {
@@ -96,7 +96,7 @@ export const TodoProvider = ({ children }) => {
         return;
       }
 
-      await axios.delete(`/api/todos/${id}`, {
+      await axios.delete(`${BASE_URL}/api/todos/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`, // Attach token for authorization
         },
