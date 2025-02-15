@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+
 const BASE_URL = "https://mern-todo-21-api.vercel.app";
 export const TodoContext = createContext();
 
@@ -7,21 +8,19 @@ export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState(null);
 
-
-
   // Fetch todos
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        const token = localStorage.getItem('token');
         if (!token) {
           setError("User is not authenticated");
           return;
         }
 
-        const response = await axios.get('${BASE_URL}/api/todos', {
+        const response = await axios.get(`${BASE_URL}/api/todos`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Attach token for authorization
+            Authorization: `Bearer ${token}`,
           },
         });
         setTodos(response.data);
@@ -35,29 +34,29 @@ export const TodoProvider = ({ children }) => {
   // Create Todo
   const createTodo = async (newTodo) => {
     try {
-      const token = localStorage.getItem('token'); // Retrieve token from localStorage
+      const token = localStorage.getItem('token');
       if (!token) {
-        setError("Userkkk is not authenticated");
+        setError("User is not authenticated");
         return;
       }
 
       const response = await axios.post(
-        '${BASE_URL}/api/todos',
+        `${BASE_URL}/api/todos`,
         newTodo,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Attach token for authorization
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       setTodos((prevTodos) => [...prevTodos, response.data.newTodo]);
-      // Optionally, re-fetch all todos from the backend after creation
-      const result = await axios.get('${BASE_URL}/api/todos', {
+
+      const result = await axios.get(`${BASE_URL}/api/todos`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Ensure token is sent with re-fetch
+          Authorization: `Bearer ${token}`,
         },
       });
-      setTodos(result.data);  // Replace with the latest todos
+      setTodos(result.data);
     } catch (error) {
       setError("Failed to create todo");
     }
@@ -68,7 +67,7 @@ export const TodoProvider = ({ children }) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
-        setError("User is not jauthenticated");
+        setError("User is not authenticated");
         return;
       }
 
@@ -77,7 +76,7 @@ export const TodoProvider = ({ children }) => {
         updatedTodo,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Attach token for authorization
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -98,7 +97,7 @@ export const TodoProvider = ({ children }) => {
 
       await axios.delete(`${BASE_URL}/api/todos/${id}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Attach token for authorization
+          Authorization: `Bearer ${token}`,
         },
       });
       setTodos(todos.filter(todo => todo._id !== id));
