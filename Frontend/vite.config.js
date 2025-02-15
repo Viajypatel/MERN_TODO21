@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(),tailwindcss()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000', // Forward requests starting with /api to your backend
+      '/api': 'https://mern-todo-21-api.vercel.app', // Forward requests starting with /api to your backend
     },
   },
 })
