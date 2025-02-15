@@ -25,7 +25,7 @@ export const TodoProvider = ({ children }) => {
         });
         setTodos(response.data);
       } catch (err) {
-        setError("Failed to fetch todos");
+       // setError("Failed to fetch todos");
       }
     };
     fetchTodos();
