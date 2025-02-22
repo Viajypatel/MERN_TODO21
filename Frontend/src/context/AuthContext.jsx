@@ -16,15 +16,22 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = (userData, token) => {
+    console.log(token);
     setUser(userData);
     setToken(token); // Save token in state
-    localStorage.setItem("token", token); // Store token in localStorage
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Log to verify
+    console.log("Stored Token:", localStorage.getItem("token"));
+    console.log("Stored8888 User:", JSON.parse(localStorage.getItem("user")))// Store token in localStorage
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     toast.success("Successfully logged out!");
   };
 

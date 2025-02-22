@@ -21,7 +21,7 @@ const Login = () => {
         toast.success('Login Successful! 🎉');
       const { token, user } = res.data;
       console.log(res.data);
-      login(user);
+      login(user,token);
       localStorage.setItem('token', token);
       //alert('Login successful!');
       navigate('/home');

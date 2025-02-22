@@ -16,7 +16,7 @@ const TodoPage = () => {
   };
 
   return (
-    <div className="mt-4 container mx-auto p-6 h-80 w-120 border-1 border-black rounded-1xl">
+    <div className="mt-4 container mx-auto p-6 h-80 w-120  rounded-1xl">
       <h1 className="text-3xl font-bold text-center text-gray-700 mb-6">Todo List</h1>
       <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} handleSubmit={handleSubmit} />
       
@@ -26,9 +26,9 @@ const TodoPage = () => {
         {todos.length === 0 ? (
           <p className="text-center text-gray-500">No todos available</p>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 gap-y-1">
             {Array.isArray(todos)&&todos.map((todo) => (
-              <TodoItem key={todo._id} todo={todo} updateTodo={updateTodo} deleteTodo={deleteTodo} />
+              <TodoItem key={todo._id} todo={todo} updateTodo={updateTodo} deleteTodo={deleteTodo} className='gap-y-1' />
             ))}
           </div>
         )}

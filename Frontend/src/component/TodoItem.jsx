@@ -45,8 +45,10 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
         </>
       ) : (
         <>
+        <div className=" border-black border border-1">
           <h3 className="text-xl font-semibold">{todo.title}</h3>
           <p className="text-gray-600">{todo.description}</p>
+         
           <div className="flex justify-between mt-4">
             <button onClick={() => setIsEditing(true)} className="bg-yellow-500 text-white p-2 rounded">
               Edit
@@ -57,6 +59,7 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
             >
               Delete
             </button>
+          </div>
           </div>
         </>
       )}
