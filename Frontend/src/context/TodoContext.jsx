@@ -14,7 +14,9 @@ export const TodoProvider = ({ children }) => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        if (!token) {
+        const token = localStorage.getItem('token');
+        const user=localStorage.getItem('user');
+        if (!token || !user) {
           setError("User is not authenticated");
           return;
         }
