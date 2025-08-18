@@ -12,14 +12,9 @@ export const TodoProvider = ({ children }) => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-<<<<<<< HEAD
         const token = localStorage.getItem('token');
-=======
-        const token = localStorage.getItem('token'); 
-        const user=localStorage.getItem('user');// Retrieve token from localStorage
->>>>>>> e8ce3c7 (chagne inauth)
         if (!token) {
-          setError("Userkkkk is not authenticated");
+          setError("User is not authenticated");
           return;
         }
 
@@ -41,11 +36,7 @@ export const TodoProvider = ({ children }) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
-<<<<<<< HEAD
         setError("User is not authenticated");
-=======
-        setError("Use is not authenticated");
->>>>>>> e8ce3c7 (chagne inauth)
         return;
       }
 
@@ -75,7 +66,8 @@ export const TodoProvider = ({ children }) => {
   const updateTodo = async (updatedTodo) => {
     try {
       const token = localStorage.getItem('token');
-      if (!token) {
+      const user=localStorage.getItem('user');
+      if (!token || !user) {
         setError("User is not authenticated");
         return;
       }
