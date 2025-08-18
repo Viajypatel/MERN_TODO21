@@ -13,7 +13,8 @@ export const TodoProvider = ({ children }) => {
     const fetchTodos = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (!token) {
+        const user=localStorage.getItem('user');
+        if (!token || !user) {
           setError("User is not authenticated");
           return;
         }
