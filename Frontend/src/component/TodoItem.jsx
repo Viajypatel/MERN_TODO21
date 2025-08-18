@@ -45,7 +45,7 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
         </>
       ) : (
         <>
-        <div className=" border-black border border-1">
+        <div className=" border-black">
           <h3 className="text-xl font-semibold">{todo.title}</h3>
           <p className="text-gray-600">{todo.description}</p>
          

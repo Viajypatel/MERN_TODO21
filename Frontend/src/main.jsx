@@ -6,10 +6,10 @@ import {AuthProvider} from './context/AuthContext';
 import { TodoProvider } from "./context/TodoContext";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <TodoProvider>
-    <AuthProvider>
+  <AuthProvider>
+    <TodoProvider>
        <App />
-    </AuthProvider>
     </TodoProvider>
+  </AuthProvider>
   </StrictMode>
 )

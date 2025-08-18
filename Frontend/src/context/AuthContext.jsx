@@ -9,9 +9,17 @@ export const AuthProvider = ({ children }) => {
   console.log(token);
   // If token exists, set user data from the token
   useEffect(() => {
-    if (token) {
-      const decodedUser = JSON.parse(atob(token.split('.')[1])); // Decoding the JWT token to get user info
-      setUser(decodedUser);
+    if (!token) {
+      setUser(null);
+      return;
+    }
+    try {
+      const payloadBase64 = token.split('.')[1];
+      const decodedJson = atob(payloadBase64);
+      const payload = JSON.parse(decodedJson);
+      setUser(payload);
+    } catch (_err) {
+      setUser(null);
     }
   }, [token]);
 

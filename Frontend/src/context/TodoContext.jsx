@@ -1,5 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 const BASE_URL = "https://mern-todo-21-api.vercel.app";
 export const TodoContext = createContext();
@@ -7,12 +8,12 @@ export const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState(null);
+  const { token } = useContext(AuthContext);
 
   // Fetch todos
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const token = localStorage.getItem('token');
         if (!token) {
           setError("User is not authenticated");
           return;
@@ -24,17 +25,17 @@ export const TodoProvider = ({ children }) => {
           },
         });
         setTodos(response.data);
+        setError(null);
       } catch (err) {
        // setError("Failed to fetch todos");
       }
     };
     fetchTodos();
-  }, []);
+  }, [token]);
 
   // Create Todo
   const createTodo = async (newTodo) => {
     try {
-      const token = localStorage.getItem('token');
       if (!token) {
         setError("User is not authenticated");
         return;
@@ -65,7 +66,6 @@ export const TodoProvider = ({ children }) => {
   // Update Todo
   const updateTodo = async (updatedTodo) => {
     try {
-      const token = localStorage.getItem('token');
       const user=localStorage.getItem('user');
       if (!token || !user) {
         setError("User is not authenticated");
@@ -90,7 +90,6 @@ export const TodoProvider = ({ children }) => {
   // Delete Todo
   const deleteTodo = async (id) => {
     try {
-      const token = localStorage.getItem('token');
       if (!token) {
         setError("User is not authenticated");
         return;
