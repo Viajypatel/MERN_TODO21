@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));  // Retrieve token from localStorage
 
-  console.log(token);
+  //console.log(token);
   // If token exists, set user data from the token
   useEffect(() => {
     if (!token) {

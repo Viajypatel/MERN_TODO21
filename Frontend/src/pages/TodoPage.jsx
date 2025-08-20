@@ -22,7 +22,7 @@ const TodoPage = () => {
       
       {error && <p className="text-red-500 text-center">{error}</p>}
 
-      <div className="mt-8 border-1 border-black rounded-sm">
+      <div className="">
         {todos.length === 0 ? (
           <p className="text-center text-gray-500">No todos available</p>
         ) : (

@@ -45,21 +45,24 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
         </>
       ) : (
         <>
-        <div className=" border-black">
-          <h3 className="text-xl font-semibold">{todo.title}</h3>
-          <p className="text-gray-600">{todo.description}</p>
-         
-          <div className="flex justify-between mt-4">
-            <button onClick={() => setIsEditing(true)} className="bg-yellow-500 text-white p-2 rounded">
-              Edit
-            </button>
-            <button
-              onClick={() => deleteTodo(todo._id)}
-              className="bg-red-500 text-white p-2 rounded"
-            >
-              Delete
-            </button>
-          </div>
+          <div className="border border-gray-300 rounded-2xl shadow-md p-4 mb-4 bg-white">
+            <h3 className="text-xl font-semibold">{todo.title}</h3>
+            <p className="text-gray-600">{todo.description}</p>
+
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={() => setIsEditing(true)}
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg shadow"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => deleteTodo(todo._id)}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </>
       )}
