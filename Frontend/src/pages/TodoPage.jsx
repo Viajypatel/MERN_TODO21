@@ -16,17 +16,19 @@ const TodoPage = () => {
   };
 
   return (
-    <div className="mt-4 container mx-auto p-6 h-80 w-120  rounded-1xl">
-      <h1 className="text-3xl font-bold text-center text-gray-700 mb-6">Todo List</h1>
+    <div className="mt-4 container mx-auto p-6  rounded-1">
+    <h1 className="sticky top-0 text-3xl font-bold text-center text-gray-700 mb-6">Todo List</h1>
+    <div className="mt-4 container mx-auto p-6 h-80 w-120  rounded-1x">
+      
       <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} handleSubmit={handleSubmit} />
       
       {error && <p className="text-red-500 text-center">{error}</p>}
-
+  </div>
       <div className="">
         {todos.length === 0 ? (
           <p className="text-center text-gray-500">No todos available</p>
         ) : (
-          <div className="space-y-4 gap-y-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {Array.isArray(todos)&&todos.map((todo) => (
               <TodoItem key={todo._id} todo={todo} updateTodo={updateTodo} deleteTodo={deleteTodo} className='gap-y-1' />
             ))}
