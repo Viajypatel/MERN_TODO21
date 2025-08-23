@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import TodoPage from './TodoPage'
 import { AuthContext, AuthProvider } from '../context/AuthContext'
-import StickyDemo from '../Stickydemo';
 function Home() {
   const {logout}=useContext(AuthContext);
   return (
@@ -14,7 +13,6 @@ function Home() {
   </button>
 
  <TodoPage/>
- {/* <StickyDemo/> */}
     </div>
   )
 }
