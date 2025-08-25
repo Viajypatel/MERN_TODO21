@@ -1,0 +1,17 @@
+
+.scrollbar-hide::-webkit-scrollbar{
+
+     display:none;
+        
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* style.css */
+.scattered-bg {
+  background-color: #3f4142; /* fallback */
+
+}

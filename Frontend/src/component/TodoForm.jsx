@@ -2,7 +2,7 @@ import React from "react";
 
 const TodoForm = ({ newTodo, setNewTodo, handleSubmit }) => {
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md mb-6">
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl shadow-lg mb-2">
       <input
         type="text"
         name="title"
@@ -20,7 +20,7 @@ const TodoForm = ({ newTodo, setNewTodo, handleSubmit }) => {
         className="w-full p-2 border border-gray-300 rounded mb-4"
         required
       ></textarea>
-      <button type="submit" className="bg-green-500 text-white p-2 rounded w-full">
+      <button type="submit" className="bg-green-500 text-white p-2 rounded-xl shadow-lg w-full">
         Add Todo
       </button>
     </form>

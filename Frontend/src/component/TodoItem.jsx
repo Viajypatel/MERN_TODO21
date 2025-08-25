@@ -18,9 +18,9 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md">
+    <>
       {isEditing ? (
-        <>
+       <div className="border w-[400px] h-[200px] border-gray-300 rounded-2xl shadow-md p-2 mb-4 bg-white">
           <input
             type="text"
             name="title"
@@ -34,7 +34,7 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded"
           ></textarea>
-          <div className="flex justify-between mt-4">
+          <div className="flex justify-between mt-2">
             <button onClick={handleEdit} className="bg-blue-500 text-white p-2 rounded">
               Save
             </button>
@@ -42,10 +42,10 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
               Cancel
             </button>
           </div>
-        </>
+        </div>
       ) : (
         <>
-          <div className="border border-gray-300 rounded-2xl shadow-md p-4 mb-4 bg-white">
+          <div className="p-6 border w-[400px] h-[150px] border-gray-300 rounded-2xl shadow-md  bg-white">
             <h3 className="text-xl font-semibold">{todo.title}</h3>
             <p className="text-gray-600">{todo.description}</p>
 
@@ -66,7 +66,7 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 
