@@ -20,7 +20,8 @@ function App() {
       <Route element={<PrivateRoute/>}>
         <Route path="/home" element={<Home/>}/>
       </Route>
-      <Route path='TS' element={<TeacherStudent/>}/>
+       <Route path='/ts' element={<TeacherStudent/>}/>
+     
         <Route path="/" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>

@@ -1,7 +1,10 @@
 import React from "react";
-
+import Navbar from "./Navbar";
 const RoleSelector = ({ setRole }) => {
   return (
+    <>
+
+    <Navbar/>
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl mb-6">Select Your Role</h1>
       <button 
@@ -15,6 +18,7 @@ const RoleSelector = ({ setRole }) => {
         I'm a Student
       </button>
     </div>
+     </>
   );
 };
 

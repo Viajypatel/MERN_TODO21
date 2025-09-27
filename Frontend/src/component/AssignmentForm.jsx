@@ -3,12 +3,12 @@ import api from "../api/axiosInstance";
 
 const AssignmentForm = ({ onAdd }) => {
   const [form, setForm] = useState({ title: "", description: "", subject: "", deadline: "" });
-
+  const BASE_URL = "https://mern-todo-21-api.vercel.app";
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await api.post("/api/assignments", form);
+    const res = await api.post(`${BASE_URL}/api/assignments`, form);
     onAdd(res.data);
     setForm({ title: "", description: "", subject: "", deadline: "" });
   };
