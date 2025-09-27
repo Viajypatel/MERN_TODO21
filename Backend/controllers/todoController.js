@@ -1,23 +1,35 @@
-const Todo = require("../models/todoModel");
-
+// const Todo = require("../models/todoModel");
+const {createSchema}=require("../validator/todo.validation");
+const {createTodoService}=require("../services/todo.service");
 // Create a To-Do
 exports.createTodo = async (req, res) => {
     try {
+        // Validate request body
+        const { error, value } = createSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({ message: error.details[0].message });
+        }
+
         const { title, description } = req.body;
+        const userId = req.user.id; // Correctly get user ID from JWT
 
-        const newTodo = new Todo({
-            title,
-            description,
-            user: req.user.id, // User ID from JWT middleware
+        // Call service and await
+        const todo = await createTodoService({ title, description, userId });
+
+        if (!todo) {
+            return res.status(400).json({ message: "Failed to create Todo" });
+        }
+
+        res.status(201).json({
+            success: true,
+            message: "Todo created successfully",
+            data: todo,
         });
-
-        await newTodo.save();
-        res.status(201).json({ message: "To-Do created successfully", newTodo });
     } catch (error) {
+        console.error("Create Todo error:", error);
         res.status(500).json({ message: "Server error", error: error.message });
     }
 };
-
 // Get all To-Dos for the logged-in user
 exports.getTodos = async (req, res) => {
     try {

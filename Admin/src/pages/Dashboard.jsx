@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/axios";
-
 const Dashboard = () => {
   const [stats, setStats] = useState({
     totalEmployees: 0,
@@ -11,18 +10,18 @@ const Dashboard = () => {
     rejectedLeaves: 0,
   });
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const res = await api.get("/admin/stats"); 
-        //setStats(res.data);
-      } catch (err) {
-        console.error("Error fetching dashboard stats", err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchStats = async () => {
+  //     try {
+  //       const res = await api.get("/admin/stats"); 
+  //       //setStats(res.data);
+  //     } catch (err) {
+  //       console.error("Error fetching dashboard stats", err);
+  //     }
+  //   };
 
-    fetchStats();
-  }, []);
+  //   fetchStats();
+  // }, [55]);
 
   return (
     <div className="p-6">

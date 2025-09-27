@@ -1,7 +1,8 @@
 import API from "./axios";
 
 // Fetch leave balance of logged-in employee
-export const fetchLeaveBalance = () => API.get("/leave/balance");
+export const fetchLeaveBalance = (id) => API.get(`/employees/${id}/leave-balance`);
+
 
 // Request a new leave
 export const applyLeave = (leaveData) => API.post("/leave/apply", leaveData);

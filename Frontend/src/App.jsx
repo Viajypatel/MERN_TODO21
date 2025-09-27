@@ -6,6 +6,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Home from './pages/Home';
 import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './component/PrivateRoute';
+import TeacherStudent from './pages/TeacherStudent';
 function App() {
   
 
@@ -19,7 +20,7 @@ function App() {
       <Route element={<PrivateRoute/>}>
         <Route path="/home" element={<Home/>}/>
       </Route>
-      
+      <Route path='TS' element={<TeacherStudent/>}/>
         <Route path="/" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>

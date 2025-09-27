@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
-
+import toast from 'react-hot-toast';
 const BASE_URL = "https://mern-todo-21-api.vercel.app";
 export const TodoContext = createContext();
 
@@ -60,6 +60,7 @@ export const TodoProvider = ({ children }) => {
         },
       });
       setTodos(result.data);
+       toast.success('Todo created Successful! 🎉');
     } catch (error) {
       setError("Failed to create todo");
     }
@@ -84,6 +85,7 @@ export const TodoProvider = ({ children }) => {
         }
       );
       setTodos(todos.map(todo => todo._id === updatedTodo._id ? response.data.todo : todo));
+       toast.success('Updated Successful! 🎉');
     } catch (err) {
       setError("Failed to update todo");
     }
@@ -103,6 +105,7 @@ export const TodoProvider = ({ children }) => {
         },
       });
       setTodos(todos.filter(todo => todo._id !== id));
+       toast.success('Delete Successful! 🎉');
     } catch (err) {
       setError("Failed to delete todo");
     }

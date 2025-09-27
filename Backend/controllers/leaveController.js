@@ -40,7 +40,34 @@ exports.applyLeave = async (req, res, next) => {
   }
 };
 
+// Get all leave requests for a specific employee
+exports.getMyLeaves = async (req, res, next) => {
+  try {
+    const employeeId = req.user.id; // from JWT after login middleware
 
+    const leaves = await Leave.find({ employeeId }).sort({ startDate: -1 });
+
+    res.json(leaves);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getAllLeaves = async (req, res, next) => {
+  try {
+    const leaves = await Leave.find()
+      .populate("employeeId", "name email leaveBalance"); 
+      // populate only useful fields
+
+    res.status(200).json({
+      message: "All leave requests fetched successfully",
+      total: leaves.length,
+      leaves,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 // controllers/leaveController.js
 
 // Employee updates leave request (only if pending)
