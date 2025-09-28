@@ -20,4 +20,25 @@ const getAssignments = async (req, res) => {
   }
 };
 
-module.exports = { createAssignment, getAssignments };
+//dlete assignment byID
+
+const deleteAssignment=async(req,res)=>{
+
+    try{
+
+       const {id}=req.params;
+       console.log(req.params);
+          const assigment=await Assignment.findByIdAndDelete(id);
+          if (!assigment) {
+      return res.status(404).json({ message: "Assignment not found" });
+    }
+
+    res.json({ message: "Assignment deleted successfully" });
+       
+    }
+    catch(error){
+          res.status(500).json({ message: "Server error", error });
+    }
+}
+
+module.exports = { createAssignment, getAssignments,deleteAssignment };

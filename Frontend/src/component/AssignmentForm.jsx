@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import api from "../api/axiosInstance";
-
+import toast from 'react-hot-toast';
 const AssignmentForm = ({ onAdd }) => {
   const [form, setForm] = useState({ title: "", description: "", subject: "", deadline: "" });
   const BASE_URL = "https://mern-todo-21-api.vercel.app";
@@ -10,6 +10,7 @@ const AssignmentForm = ({ onAdd }) => {
     e.preventDefault();
     const res = await api.post(`${BASE_URL}/api/assignments`, form);
     onAdd(res.data);
+    toast.success('assignment added Successful! 🎉');
     setForm({ title: "", description: "", subject: "", deadline: "" });
   };
 

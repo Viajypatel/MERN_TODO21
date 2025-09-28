@@ -9,7 +9,17 @@ const employeeRoutes=require("./routes/employeeRoutes.js");
 const leaveRoutes=require("./routes/leaveRoutes.js");
 const PORT=process.env.PORT;
 const assignmentRoutes = require("./routes/assignmentRoutes");//Assginement
-app.use(cors()); 
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://mern-todo-21-ui.vercel.app"
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+ 
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);

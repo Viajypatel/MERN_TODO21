@@ -8,7 +8,7 @@ export const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState(null);
-  const { token } = useContext(AuthContext);
+  const { token,user } = useContext(AuthContext);
 
   // Fetch todos
   useEffect(() => {
@@ -38,7 +38,7 @@ export const TodoProvider = ({ children }) => {
   // Create Todo
   const createTodo = async (newTodo) => {
     try {
-      if (!token) {
+      if (!token||!user) {
         setError("User is not authenticated");
         return;
       }
@@ -94,7 +94,7 @@ export const TodoProvider = ({ children }) => {
   // Delete Todo
   const deleteTodo = async (id) => {
     try {
-      if (!token) {
+      if (!token ||!user) {
         setError("User is not authenticated");
         return;
       }
